@@ -73,6 +73,12 @@ body,html{
 #set_btn:hover{
     opacity: 0.6;
 }
+.weather i{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
 footer {
     width: 100%;
     font-size: 14px;
