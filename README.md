@@ -7,7 +7,7 @@
 - 注册自己的天气appid 这个是免费的
 [天气API](http://www.tianqiapi.com/index)
 
-- 替换appid和appsecret
+- 打开js/weather.js替换appid和appsecret
 
 -  Chrome设置 加载已解压的扩展程序
 
