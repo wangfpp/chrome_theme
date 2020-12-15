@@ -11,6 +11,8 @@ body,html{
     --date_color: #fff;
     --set_btn_color: #000;
     --set_btn_bg: rgba(255, 255, 255, 1);
+    --chp_bg: transparent;
+    --chp_color: tomato
 }
 #root{
     width: 100%;
@@ -53,6 +55,14 @@ body,html{
     border: 1px solid darkcyan;
     outline: none;
     opacity: 0.9;
+}
+#chp {
+    width: 100%;
+    text-align: center;
+    height: 20px;
+    position: absolute;
+    top: 39%;
+    color: var(--chp_color);
 }
 #history_container {
     position: absolute;

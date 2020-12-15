@@ -1,27 +1,29 @@
 window.onload = _ => {
     let date_node = document.querySelector('.date');
     let input_node = document.querySelector('#search');
-    let history_container = document.querySelector("#history_container")
-    const search_gine_list = {
-        "baidu": {
-            text: "百度",
-            create_url: val => {
-                return `https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=${val}`
-            }
-        },
-        "biying": {
-            text: "必应",
-            create_url: val => {
-                return `https://www.bing.com/search?q=${val}`
-            }
-        },
-        "google": {
-            text: "谷歌",
-            create_url: val => {
-                return `http://www.google.cn/search?q=${val}&hl=zh-CN&client=aff- 360daohang&hs=yhE&affdom=360.cn&newwindow=1&start=10&amp; amp;sa=N`
-            }
-        }
-    }
+    let history_container = document.querySelector("#history_container");
+    let chp_node = document.querySelector("#chp");
+    createChp(chp_node);
+    // const search_gine_list = {
+    //     "baidu": {
+    //         text: "百度",
+    //         create_url: val => {
+    //             return `https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=${val}`
+    //         }
+    //     },
+    //     "biying": {
+    //         text: "必应",
+    //         create_url: val => {
+    //             return `https://www.bing.com/search?q=${val}`
+    //         }
+    //     },
+    //     "google": {
+    //         text: "谷歌",
+    //         create_url: val => {
+    //             return `http://www.google.cn/search?q=${val}&hl=zh-CN&client=aff- 360daohang&hs=yhE&affdom=360.cn&newwindow=1&start=10&amp; amp;sa=N`
+    //         }
+    //     }
+    // }
     if (input_node) {
         input_node.focus();
     }
@@ -46,12 +48,23 @@ window.onload = _ => {
         }
     }
     
+    function createChp(node) {
+        fetch('https://chp.shadiao.app/api.php').then(res => {
+            return res.text();
+        }).then(res => {
+            let str = JSON.stringify(res);
+            console.log(str)
+            if (res && node ) {
+                node.innerHTML = res;
+            }
+        })
+    }
 }
 
 
 
+
 chrome.browserAction.onClicked.addListener(() => chrome.tabs.create({}))
-console.log(chrome.history)
 chrome.history.search({text: '', maxResults: 10}, function(data) {
     let history_item = "";
     data.forEach(function(page) {
