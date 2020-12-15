@@ -6,13 +6,26 @@ body,html{
     width: 100%;
     height: 100%
 }
-
+/* 主题色定义 css变量 */
+#root{
+    --date_color: #fff
+}
 #root{
     width: 100%;
     height: 100%;
     background: url('../img/background/base_bg.jpeg');
 }
 
+
+#root .info {
+    position: absolute;
+    top: 10px;
+    left: 10px
+}
+#root .info .date {
+    color: var(--date_color);
+    text-align: center;
+}
 #search {
     border-radius: 20px;
     border: 1px solid #eee;
@@ -20,7 +33,7 @@ body,html{
     width: 40%;
     height: 40px;
     position: absolute;
-    top: 50%;
+    top: 30%;
     left: 50%;
     transform: translateX(-50%);
     padding: 0 15px;
@@ -29,6 +42,7 @@ body,html{
 #search:focus{
     border: 1px solid darkcyan;
 }
+
 
 footer {
     width: 100%;
