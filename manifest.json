@@ -7,7 +7,8 @@
         "default_icon": "img/64.png"
     },
     "background": {
-        "scripts": [ "js/background.js" ]
+        "scripts": [ "js/background.js" ],
+        "css": [ "css/background.css" ]
     },
     "chrome_url_overrides": {
         "newtab": "background.html"
