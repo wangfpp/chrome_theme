@@ -1,0 +1,22 @@
+{
+    "name": "wangfpp-theme",
+    "version": "0.1.0",
+    "description": "自定义Chrome主题",
+    "manifest_version": 2,
+    "browser_action": {
+        "default_icon": "img/64.png"
+    },
+    "background": {
+        "scripts": [ "js/background.js" ]
+    },
+    "chrome_url_overrides": {
+        "newtab": "background.html"
+    },
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+   "icons": {
+      "128": "img/128.png",
+      "32": "img/32.png",
+      "64": "img/64.png"
+   },
+    "permissions": [ "\u003Call_urls>", "tabs", "storage", "unlimitedStorage", "topSites", "contextMenus" ]
+}
