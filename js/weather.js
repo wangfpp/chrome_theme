@@ -1,5 +1,5 @@
-let appid = "",
-appsecret = "",
+let appid = 73531774,
+appsecret = "nUP7o0qA",
 request_url = `http://www.tianqiapi.com/api?version=v61&appid=${appid}&appsecret=${appsecret}`,
 weather_node = document.querySelector('.weather'),
 time_gap = 3 * 60 * 60 * 1000;
