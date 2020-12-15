@@ -8,7 +8,9 @@ body,html{
 }
 /* 主题色定义 css变量 */
 #root{
-    --date_color: #fff
+    --date_color: #fff;
+    --set_btn_color: #000;
+    --set_btn_bg: rgba(255, 255, 255, 1);
 }
 #root{
     width: 100%;
@@ -43,7 +45,27 @@ body,html{
     border: 1px solid darkcyan;
 }
 
-
+#set_btn {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    word-spacing: 100%;
+    letter-spacing: 10;
+    bottom: 30px;
+    right: 30px;
+    color: var(--set_btn_color);
+    background-color: var(--set_btn_bg);
+    border-radius: 50%;
+    user-select: none;
+}
+#set_btn:hover{
+    opacity: 0.6;
+}
 footer {
     width: 100%;
     font-size: 14px;
