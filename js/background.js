@@ -1,29 +1,14 @@
 window.onload = _ => {
-    let date_node = document.querySelector('.date');
-    let input_node = document.querySelector('#search');
-    let history_container = document.querySelector("#history_container");
-    let chp_node = document.querySelector("#chp");
-    createChp(chp_node);
-    // const search_gine_list = {
-    //     "baidu": {
-    //         text: "百度",
-    //         create_url: val => {
-    //             return `https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=${val}`
-    //         }
-    //     },
-    //     "biying": {
-    //         text: "必应",
-    //         create_url: val => {
-    //             return `https://www.bing.com/search?q=${val}`
-    //         }
-    //     },
-    //     "google": {
-    //         text: "谷歌",
-    //         create_url: val => {
-    //             return `http://www.google.cn/search?q=${val}&hl=zh-CN&client=aff- 360daohang&hs=yhE&affdom=360.cn&newwindow=1&start=10&amp; amp;sa=N`
-    //         }
-    //     }
-    // }
+    let date_node = document.querySelector('.date'),
+    input_node = document.querySelector('#search'),
+    history_container = document.querySelector("#history_container"),
+    chp_node = document.querySelector("#chp"),
+    menu_node = document.querySelector('#menu'),
+    engine_radio = menu_node.querySelectorAll(".menu-item input[name=engine]")
+    set_btn = document.querySelector('#set_btn');
+
+    createChp(chp_node); // 获取彩虹屁
+    
     if (input_node) {
         input_node.focus();
     }
@@ -43,11 +28,39 @@ window.onload = _ => {
         let { keyCode, target } = e;
         let { value } = target;
         if (keyCode === 13 && value) {
-            window.location.href = `https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=${value}`;
+            let localstorage_engine = window.localStorage.getItem("search_engine");
+            localstorage_engine = search_gine_list.includes(localstorage_engine) ? localstorage_engine : search_gine_list[0];
+            let engin_url = search_gine_dict[localstorage_engine].create_url(value);
+            window.location.href = engin_url;
             target.value = ""
         }
     }
-    
+    /**
+     * 菜单项增加选择搜索引擎
+     */
+    engine_radio.forEach(item => {
+        item.onchange = e => {
+            let { target } = e;
+           let engine = target.getAttribute("data");
+           window.localStorage.setItem("search_engine", engine)
+        }
+    })
+    /**
+     * @description 显示菜单项
+     * @param {Event} e 
+     */
+    set_btn.onclick = e => {
+        let class_list = getClass(menu_node);
+        if (class_list.length) {
+            if (class_list.includes("hidemenu")) {
+                menu_node.setAttribute("class", "showmenu");
+            }else if (class_list.includes("showmenu")) {
+                menu_node.setAttribute("class", "hidemenu");
+            }
+        } else {
+            addClass(menu_node, "showmenu");
+        }
+    }
     function createChp(node) {
         fetch('https://chp.shadiao.app/api.php').then(res => {
             return res.text();

@@ -12,12 +12,15 @@ body,html{
     --set_btn_color: #000;
     --set_btn_bg: rgba(255, 255, 255, 1);
     --chp_bg: transparent;
-    --chp_color: #fff
+    --chp_color: #fff;
+    --menu-bg: rgba(255, 255, 255, .9)
 }
 #root{
     width: 100%;
     height: 100%;
     background: url('../img/background/base_bg.jpeg');
+    overflow: hidden;
+    position: relative;
 }
 
 
@@ -95,8 +98,28 @@ body,html{
     width: 100%;
     height: 30px;
 }
+
+#menu {
+    width: 170px;
+    height: 100%;
+    position: absolute;
+    right: -170px;
+    top: 0;
+    background-color: var(--menu-bg);
+    z-index: 1;
+}
+
+#menu.showmenu {
+    animation: showMenu 1s;
+    right: 0;
+}
+
+#menu.hidemenu {
+    animation: hideMenu 1s;
+}
+
 #set_btn {
-    position: fixed;
+    position: absolute;
     width: 30px;
     height: 30px;
     cursor: pointer;
@@ -112,6 +135,7 @@ body,html{
     background-color: var(--set_btn_bg);
     border-radius: 50%;
     user-select: none;
+    z-index: 10;
 }
 #set_btn:hover{
     opacity: 0.6;
@@ -124,4 +148,22 @@ footer {
     position: fixed;
     bottom: 0;
     text-align: center;
+}
+
+@keyframes showMenu {
+    0% {
+        right: -170px;
+    }
+    100% {
+        right: 0
+    }
+}
+
+@keyframes hideMenu {
+    0% {
+        right: 0;
+    }
+    100% {
+        right: -170px
+    }
 }
