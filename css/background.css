@@ -11,6 +11,8 @@ body,html{
     --date_color: #fff;
     --set_btn_color: #000;
     --set_btn_bg: rgba(255, 255, 255, 1);
+    --chp_bg: transparent;
+    --chp_color: #fff
 }
 #root{
     width: 100%;
@@ -45,13 +47,54 @@ body,html{
     left: 50%;
     transform: translateX(-50%);
     padding: 0 15px;
+    opacity: 0.6;
     font-size: 16px;
+    -webkit-user-select: text
 }
 #search:focus{
     border: 1px solid darkcyan;
     outline: none;
+    opacity: 0.9;
 }
-
+#chp {
+    width: 100%;
+    text-align: center;
+    height: 20px;
+    position: absolute;
+    top: 39%;
+    color: var(--chp_color);
+}
+#history_container {
+    position: absolute;
+    width: 700px;
+    height: 300px;
+    top: 61%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    color: var(--date_color);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+#history_container .history_item {
+    width: 120px;
+    height: 120px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+    margin: 10px;
+    cursor: pointer;
+    padding: 10px;
+    box-sizing: border-box;
+}
+#history_container .history_item .title {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    height: 30px;
+}
 #set_btn {
     position: fixed;
     width: 30px;

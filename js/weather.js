@@ -1,11 +1,3 @@
-// window.onload = _ => {
-//     // let appid = 73531774,
-//     // appsecret = "nUP7o0qA",
-//     // request_url = `http://www.tianqiapi.com/api?version=v61&appid=${appid}&appsecret=${appsecret}`;
-//     // fetch(request_url).then(res => {
-//     //     console.log(res);
-//     // })
-// }
 let appid = 73531774,
     appsecret = "nUP7o0qA",
     request_url = `http://www.tianqiapi.com/api?version=v61&appid=${appid}&appsecret=${appsecret}`,

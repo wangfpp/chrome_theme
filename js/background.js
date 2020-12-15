@@ -1,6 +1,29 @@
 window.onload = _ => {
     let date_node = document.querySelector('.date');
     let input_node = document.querySelector('#search');
+    let history_container = document.querySelector("#history_container");
+    let chp_node = document.querySelector("#chp");
+    createChp(chp_node);
+    // const search_gine_list = {
+    //     "baidu": {
+    //         text: "百度",
+    //         create_url: val => {
+    //             return `https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=${val}`
+    //         }
+    //     },
+    //     "biying": {
+    //         text: "必应",
+    //         create_url: val => {
+    //             return `https://www.bing.com/search?q=${val}`
+    //         }
+    //     },
+    //     "google": {
+    //         text: "谷歌",
+    //         create_url: val => {
+    //             return `http://www.google.cn/search?q=${val}&hl=zh-CN&client=aff- 360daohang&hs=yhE&affdom=360.cn&newwindow=1&start=10&amp; amp;sa=N`
+    //         }
+    //     }
+    // }
     if (input_node) {
         input_node.focus();
     }
@@ -25,10 +48,51 @@ window.onload = _ => {
         }
     }
     
+    function createChp(node) {
+        fetch('https://chp.shadiao.app/api.php').then(res => {
+            return res.text();
+        }).then(res => {
+            let str = JSON.stringify(res);
+            console.log(str)
+            if (res && node ) {
+                node.innerHTML = res;
+            }
+        })
+    }
 }
 
+
+
+
+chrome.browserAction.onClicked.addListener(() => chrome.tabs.create({}))
+chrome.history.search({text: '', maxResults: 10}, function(data) {
+    let history_item = "";
+    data.forEach(function(page) {
+        let { id, title, url, visitCount, typedCount } = page;
+        history_item += `
+            <div class="history_item" _url_data="${url}">
+                <p class="title">${title}</p>
+            </div>
+        `
+    });
+    if (history_item.length && history_container) {
+        history_container.innerHTML = history_item;
+        let history_item_list = document.querySelectorAll(".history_item");
+        history_item_list.forEach(history_card => {
+            history_card.onclick = e => {
+                let { target } = e;
+                let _url = target.getAttribute("_url_data");
+                if (_url) {
+                    window.location.href = _url
+                }
+            }
+        })
+    }
+});
+
+
 /***
- * https://www.bing.com/search?q=haha
+ * 
  * 
  * Google搜索参数
  * 【http://www.google.cn/search?q=112&hl=zh-CN&client=aff- 360daohang&hs=yhE&affdom=360.cn&newwindow=1&start=10&amp; amp;sa=N】
@@ -51,5 +115,3 @@ window.onload = _ => {
  * 
  *  
  */
-
-chrome.browserAction.onClicked.addListener(() => chrome.tabs.create({}))
