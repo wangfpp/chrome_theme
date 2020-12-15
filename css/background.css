@@ -24,8 +24,14 @@ body,html{
     top: 10px;
     left: 10px
 }
-#root .info .date {
+#root .weather{
+    position: absolute;
+    top: 10px;
+    right: 10px
+}
+#root .info .date,#root .weather {
     color: var(--date_color);
+    font-size: 14px;
     text-align: center;
 }
 #search {
@@ -43,6 +49,7 @@ body,html{
 }
 #search:focus{
     border: 1px solid darkcyan;
+    outline: none;
 }
 
 #set_btn {
