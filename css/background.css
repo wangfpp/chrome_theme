@@ -116,11 +116,36 @@ body,html{
 #set_btn:hover{
     opacity: 0.6;
 }
-.weather i{
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    vertical-align: middle;
+.flex_col{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.weather{
+    height: 60px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+.divider_ver{
+    width: 1px;
+    height: 90%;
+    background-color: #eee;
+    margin: 0 5px;
+}
+h3{
+    font-size: 18px;
+}
+.ml_10{
+    margin-left: 10px;
+}
+.flex_end{
+    align-items: flex-end;
+}
+.weather img{
+    width: 30px;
+    height: 30px;
 }
 footer {
     width: 100%;

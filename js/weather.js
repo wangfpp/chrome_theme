@@ -34,7 +34,17 @@ function getWeather(url) {
         if (weather_node) {
             let html_str = "";
             let weaIcon = wea2icon(wea);
-            weather_node.innerHTML = `${city} ${wea}<i style='background:url(./img/rain_icons/${weaIcon}.png) no-repeat center;background-size: contain;'></i>空气质量:${air_level} PM2.5:${air_pm25} 温度${tem}°C ${win}`
+            weather_node.innerHTML = `
+            <div class='flex_col flex_end'>
+                <h3>${city}</h3>
+                <p>${air_level}/PM2.5:${air_pm25}/${win}/${wea}</p>
+            </div>
+            <div class='divider_ver'></div>
+            <div class='flex_col'>
+                <img src='./img/rain_icons/${weaIcon}.png'/>
+                <h3>${tem}°C</h3>
+            </div>
+            `
         }
     }).catch(err => {
         console.log(err);
