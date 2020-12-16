@@ -27,14 +27,34 @@ window.onload = _ => {
     if (input_node) {
         input_node.focus();
     }
+    function formatDateString(base_parse){
+        let date =base_parse.split("<br/>")[0],
+        time =base_parse.split("<br/>")[1],
+        week =base_parse.split("<br/>")[2],
+        year = date.substr(0,4),
+        mon = date.substr(5,2),
+        day = date.substr(8,2);
+        console.log(year,mon,day);
+        return `
+        <h4 class='year'>${year}</h4>
+        <h3 class='mon_day'>
+            <cite>${mon}</cite>
+            <cite>${day}</cite>
+            <p>${week}</p>
+        </h3>
+        <div class='flex_col flex_start'>
+            <h3 class="fw_500 fs_20">${time}</h3>
+        </div>
+        `
+    }
     if (date_node) {
         moment.locale('zh-cn');
         let base_parse = moment().format("LLLL");
-        date_node.innerHTML = base_parse;
+        date_node.innerHTML = formatDateString(base_parse);
         setInterval(() => {
             if (date_node) {
                 base_parse = moment().format("LLLL");
-                date_node.innerHTML = base_parse;
+                date_node.innerHTML = formatDateString(base_parse);
             }
         }, 1000);
     }

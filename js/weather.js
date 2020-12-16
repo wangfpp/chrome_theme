@@ -3,7 +3,14 @@ let appid = 73531774,
     request_url = `http://www.tianqiapi.com/api?version=v61&appid=${appid}&appsecret=${appsecret}`,
     weather_node = document.querySelector('.weather'),
     time_gap = 3 * 60 * 60 * 1000;
+let weatherCity=null;
+const weatherNode = document.querySelector(".weather");
 getWeather(request_url);
+// 天气详情跳转百度天气
+weatherNode.onclick=()=>{
+    window.location.href = `https://www.baidu.com/s?tn=baidutop10&rsv_idx=2&wd=${weatherCity}天气预报`;
+    
+}
 /**
  * 定时更新天气信息
  */
@@ -34,15 +41,16 @@ function getWeather(url) {
         if (weather_node) {
             let html_str = "";
             let weaIcon = wea2icon(wea);
+            weatherCity=city;
             weather_node.innerHTML = `
             <div class='flex_col flex_end'>
                 <h3>${city}</h3>
-                <p>${air_level}/PM2.5:${air_pm25}/${win}/${wea}</p>
+                <p class="fw_500">${air_level}/PM2.5:${air_pm25}/${win}/${wea}</p>
             </div>
             <div class='divider_ver'></div>
             <div class='flex_col'>
                 <img src='./img/rain_icons/${weaIcon}.png'/>
-                <h3>${tem}°C</h3>
+                <h3 class="fs_fy fw_500">${tem}°C</h3>
             </div>
             `
         }
