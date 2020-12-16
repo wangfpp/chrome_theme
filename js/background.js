@@ -83,23 +83,16 @@ chrome.history.search({text: '', maxResults: 10}, function(data) {
     data.forEach(function(page) {
         let { id, title, url, visitCount, typedCount } = page;
         history_item += `
-            <div class="history_item" _url_data="${url}">
-                <p class="title">${title}</p>
+            <div class="history_item">
+                <a href="${url}">
+                    <img src="chrome://favicon/size/20@2x/${url}" alt="icon"/>
+                    <p class="title">${title}</p>
+                </a>
             </div>
         `
     });
     if (history_item.length && history_container) {
         history_container.innerHTML = history_item;
-        let history_item_list = document.querySelectorAll(".history_item");
-        history_item_list.forEach(history_card => {
-            history_card.onclick = e => {
-                let { target } = e;
-                let _url = target.getAttribute("_url_data");
-                if (_url) {
-                    window.location.href = _url
-                }
-            }
-        })
     }
 });
 
