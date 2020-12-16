@@ -60,7 +60,6 @@ function getWeather(url) {
 }
 
 function wea2icon(desc) {
-    console.log(desc)
     const baseObj = {
         "晴": 100,
         "多云": 101,

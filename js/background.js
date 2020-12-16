@@ -19,7 +19,6 @@ window.onload = _ => {
         year = date.substr(0,4),
         mon = date.substr(5,2),
         day = date.substr(8,2);
-        console.log(year,mon,day);
         return `
         <h4 class='year'>${year}</h4>
         <h3 class='mon_day'>
@@ -85,8 +84,6 @@ window.onload = _ => {
         fetch('https://chp.shadiao.app/api.php').then(res => {
             return res.text();
         }).then(res => {
-            let str = JSON.stringify(res);
-            console.log(str)
             if (res && node ) {
                 node.innerHTML = res;
             }

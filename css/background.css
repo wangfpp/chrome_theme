@@ -93,18 +93,6 @@ html {
   cursor: pointer;
   padding: 10px;
   box-sizing: border-box;
-    position: absolute;
-    width: 35%;
-    height: 300px;
-    top: 61%;
-    left: 50%;
-    transform: translate(-50% , -50%);
-    color: var(--date_color);
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
 }
 #history_container .history_item {
     width: 120px;
@@ -132,19 +120,12 @@ html {
     background-color: rgba(255, 255, 255, 1);
 }
 #history_container .history_item .title {
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 100%;
-  height: 30px;
-=======
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
     width: 100%;
     height: 20px;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
 }
 
 #menu {
