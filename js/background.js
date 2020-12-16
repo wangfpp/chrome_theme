@@ -44,7 +44,12 @@ window.onload = e => {
         let { target } = e;
         let id = target.getAttribute("id");
         if ((!menu_node.contains(target) && !set_btn.contains(target))){
-            menu_node.setAttribute("class", "hidemenu");
+            let class_list = getClass(menu_node);
+            if (class_list.length) {
+                 if (class_list.includes("showmenu")) {
+                    menu_node.setAttribute("class", "hidemenu");
+                }
+            }
         }
     }
     /**
