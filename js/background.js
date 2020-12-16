@@ -10,7 +10,7 @@ window.onload = e => {
 
     createChp(chp_node); // 获取彩虹屁
     // http://pic.netbian.com/uploads/allimg/201207/233833-1607355513c763.jpg 黑色
-    setRootBG("../img/background/base_bg.jpeg")
+    setRootBG("http://img.netbian.com/file/2017/0920/83047f81e72e8cac696d43fc41c9e7d4.jpg")
     /**
      * 设置背景图
      */
@@ -36,8 +36,11 @@ window.onload = e => {
                 }
                 let _date_color = areaPixAverage(pixel, [0, 166], [0, 53]);
                 let weather_color = areaPixAverage(pixel, [width-188, width], [0, 60]);
+                let chp_pos_y = parseInt(height * 0.39);
+                let chp_color = areaPixAverage(pixel, [parseInt(width/2), width], [chp_pos_y, chp_pos_y + 30]);
                 root_node.style.setProperty("--date_color", _date_color);
                 root_node.style.setProperty("--weather-color", weather_color);
+                root_node.style.setProperty("--chp_color", chp_color);
             }
             image.src = url
         }
