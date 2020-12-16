@@ -34,3 +34,36 @@ function removeClass(target, class_name) {
         target.setAttribute("class", class_name_list_str.join(" "));
     }
 }
+
+/**
+ * @description 生成两位数
+ * @param {Number} num 
+ */
+function doubleNum(num) {
+    return num >= 10 ? num : `0${num}`;
+}
+
+/**
+ * @description 格式化周
+ * @param {Number} week 星期数0-6
+ * @param {String} perfix 前缀
+ */
+function weekParse(week, perfix) {
+    perfix = perfix || "星期";
+    switch(week) {
+        case 0:
+            return `${perfix}日`;
+        case 1:
+            return `${perfix}一`;
+        case 2:
+            return `${perfix}二`;
+        case 3:
+            return `${perfix}三`;
+        case 4:
+            return `${perfix}四`;
+        case 5:
+            return `${perfix}五`;
+        case 6:
+            return `${perfix}六`;
+    }
+}

@@ -148,7 +148,7 @@ html {
 }
 
 #set_btn {
-  position: fixed;
+  position: absolute;
   width: 30px;
   height: 30px;
   cursor: pointer;
@@ -160,6 +160,7 @@ html {
   letter-spacing: 10;
   bottom: 30px;
   right: 30px;
+  z-index: 10;
   color: var(--set_btn_color);
   background-color: var(--set_btn_bg);
   border-radius: 50%;

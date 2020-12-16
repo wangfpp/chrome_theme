@@ -1,4 +1,4 @@
-window.onload = _ => {
+window.onload = e => {
     let date_node = document.querySelector('.date'),
     input_node = document.querySelector('#search'),
     history_container = document.querySelector("#history_container"),
@@ -12,33 +12,14 @@ window.onload = _ => {
     if (input_node) {
         input_node.focus();
     }
-    function formatDateString(base_parse){
-        let date =base_parse.split("<br/>")[0],
-        time =base_parse.split("<br/>")[1],
-        week =base_parse.split("<br/>")[2],
-        year = date.substr(0,4),
-        mon = date.substr(5,2),
-        day = date.substr(8,2);
-        return `
-        <h4 class='year'>${year}</h4>
-        <h3 class='mon_day'>
-            <cite>${mon}</cite>
-            <cite>${day}</cite>
-            <p>${week}</p>
-        </h3>
-        <div class='flex_col flex_start'>
-            <h3 class="fw_500 fs_20">${time}</h3>
-        </div>
-        `
+    input_node.onfocus = function(e) {
+        console.log(e);
     }
     if (date_node) {
-        moment.locale('zh-cn');
-        let base_parse = moment().format("LLLL");
-        date_node.innerHTML = formatDateString(base_parse);
+        date_node.innerHTML = formatDateString();
         setInterval(() => {
             if (date_node) {
-                base_parse = moment().format("LLLL");
-                date_node.innerHTML = formatDateString(base_parse);
+                date_node.innerHTML = formatDateString();
             }
         }, 1000);
     }
@@ -52,6 +33,18 @@ window.onload = _ => {
             let engin_url = search_gine_dict[localstorage_engine].create_url(value);
             window.location.href = engin_url;
             target.value = ""
+        }
+    }
+
+    /**
+     * @description 点击页面时隐藏菜单
+     * @param {*} 
+     */
+    document.onclick = e => {
+        let { target } = e;
+        let id = target.getAttribute("id");
+        if (id != "menu" && id != "set_btn" ){
+            // menu_node.setAttribute("class", "hidemenu");
         }
     }
     /**
@@ -88,6 +81,26 @@ window.onload = _ => {
                 node.innerHTML = res;
             }
         })
+    }
+
+    /**
+     * 生成日期数据
+     */
+    function formatDateString(){
+        let date = new Date();
+        let [year, mon, day, week, hour, min, second ] = [date.getFullYear(), date.getMonth() + 1, date.getDate(), date.getDay(), date.getHours(), date.getMinutes(), date.getSeconds()];
+        let time = `${doubleNum(hour)}:${doubleNum(min)}:${doubleNum(second)}`
+        return `
+        <h4 class='year'>${year}</h4>
+        <h3 class='mon_day'>
+            <cite>${mon}</cite>
+            <cite>${day}</cite>
+            <p>${weekParse(week)}</p>
+        </h3>
+        <div class='flex_col flex_start'>
+            <h3 class="fw_500 fs_20">${time}</h3>
+        </div>
+        `
     }
 }
 
