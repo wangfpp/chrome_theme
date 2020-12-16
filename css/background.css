@@ -1,6 +1,7 @@
-* {
-  padding: 0;
-  margin: 0;
+*{
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
 }
 body,
 html {
@@ -14,11 +15,15 @@ html {
   --set_btn_bg: rgba(255, 255, 255, 1);
   --chp_bg: transparent;
   --chp_color: #fff;
+  --menu-bg: rgba(255, 255, 255, .9)
 }
-#root {
-  width: 100%;
-  height: 100%;
-  background: url("../img/background/base_bg.jpeg");
+
+#root{
+    width: 100%;
+    height: 100%;
+    background: url('../img/background/base_bg.jpeg');
+    overflow: hidden;
+    position: relative;
 }
 
 #root .info {
@@ -88,6 +93,43 @@ html {
   cursor: pointer;
   padding: 10px;
   box-sizing: border-box;
+    position: absolute;
+    width: 35%;
+    height: 300px;
+    top: 61%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    color: var(--date_color);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+#history_container .history_item {
+    width: 120px;
+    height: 100px;
+    border-radius: 10px;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 5px;
+    box-sizing: border-box;
+}
+#history_container .history_item:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+#history_container .history_item a{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    color: var(--date_color);
+}
+#history_container .history_item a img {
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 1);
 }
 #history_container .history_item .title {
   text-overflow: ellipsis;
@@ -95,7 +137,35 @@ html {
   overflow: hidden;
   width: 100%;
   height: 30px;
+=======
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    height: 20px;
+    justify-content: center;
+    align-items: center;
 }
+
+#menu {
+    width: 170px;
+    height: 100%;
+    position: absolute;
+    right: -170px;
+    top: 0;
+    background-color: var(--menu-bg);
+    z-index: 1;
+}
+
+#menu.showmenu {
+    animation: showMenu 1s;
+    right: 0;
+}
+
+#menu.hidemenu {
+    animation: hideMenu 1s;
+}
+
 #set_btn {
   position: fixed;
   width: 30px;
@@ -239,4 +309,52 @@ footer {
   position: fixed;
   bottom: 0;
   text-align: center;
+}
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    word-spacing: 100%;
+    letter-spacing: 10;
+    bottom: 30px;
+    right: 30px;
+    color: var(--set_btn_color);
+    background-color: var(--set_btn_bg);
+    border-radius: 50%;
+    user-select: none;
+    z-index: 10;
+}
+#set_btn:hover{
+    opacity: 0.6;
+}
+footer {
+    width: 100%;
+    font-size: 14px;
+    font-weight: bold;
+    opacity: 0.3;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+}
+
+@keyframes showMenu {
+    0% {
+        right: -170px;
+    }
+    100% {
+        right: 0
+    }
+}
+
+@keyframes hideMenu {
+    0% {
+        right: 0;
+    }
+    100% {
+        right: -170px
+    }
 }

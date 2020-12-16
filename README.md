@@ -21,3 +21,9 @@
 - 自主切换背景
 
 - 设置搜索引擎
+
+### 效果图
+![效果](./img/md/example.png)
+
+### 参考文档
+[中文文档](https://wizardforcel.gitbooks.io/chrome-doc/content/1.html)

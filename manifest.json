@@ -19,5 +19,5 @@
       "32": "img/32.png",
       "64": "img/64.png"
    },
-    "permissions": ["chrome-search://ntpicon/*","\u003Call_urls>", "tabs", "storage", "unlimitedStorage", "topSites", "contextMenus", "history" ]
+    "permissions": [ "<all_urls>", "tabs", "storage", "unlimitedStorage", "topSites", "contextMenus", "history" ]
 }
