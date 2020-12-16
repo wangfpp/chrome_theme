@@ -43,8 +43,8 @@ window.onload = e => {
     document.onclick = e => {
         let { target } = e;
         let id = target.getAttribute("id");
-        if (id != "menu" && id != "set_btn" ){
-            // menu_node.setAttribute("class", "hidemenu");
+        if ((!menu_node.contains(target) && !set_btn.contains(target))){
+            menu_node.setAttribute("class", "hidemenu");
         }
     }
     /**
