@@ -11,6 +11,7 @@ html {
 /* 主题色定义 css变量 */
 #root {
   --date_color: #fff;
+  --weather-color: #fff;
   --set_btn_color: #000;
   --set_btn_bg: rgba(255, 255, 255, 1);
   --chp_bg: transparent;
@@ -40,6 +41,9 @@ html {
   color: var(--date_color);
   font-size: 14px;
   text-align: center;
+}
+#root .weather {
+    color: var(--weather-color);
 }
 #search {
   border-radius: 20px;

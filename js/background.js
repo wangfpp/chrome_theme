@@ -9,8 +9,8 @@ window.onload = e => {
     set_btn = document.querySelector('#set_btn');
 
     createChp(chp_node); // 获取彩虹屁
-    
-    setRootBG("http://pic.netbian.com/uploads/allimg/201207/233833-1607355513c763.jpg")
+    // http://pic.netbian.com/uploads/allimg/201207/233833-1607355513c763.jpg 黑色
+    setRootBG("../img/background/base_bg.jpeg")
     /**
      * 设置背景图
      */
@@ -34,8 +34,10 @@ window.onload = e => {
                         pixel[i].push([image_data[(i*8 + j * 4)], image_data[(i*8 + j * 4) + 1], image_data[(i*8 + j * 4)+2], image_data[(i*8 + j * 4)+3]])
                     }
                 }
-                let color = areaPixAverage(pixel, 166, 53);
-                root_node.style.setProperty("--date_color", color)
+                let _date_color = areaPixAverage(pixel, [0, 166], [0, 53]);
+                let weather_color = areaPixAverage(pixel, [width-188, width], [0, 60]);
+                root_node.style.setProperty("--date_color", _date_color);
+                root_node.style.setProperty("--weather-color", weather_color);
             }
             image.src = url
         }
@@ -68,12 +70,19 @@ window.onload = e => {
         }
     }
 
-
+    /**
+     * @description 计算一个区域的反色
+     * @param {Array} imgarr 图片的数据矩阵
+     * @param {Array} width 宽度的坐标范围
+     * @param {Array} height 高度的坐标范围
+     */
     function areaPixAverage(imgarr, width, height) {
-        let r = 0, g = 0, b = 0;
-        let sun = width * height;
-        for(var i = 0; i < width;i++) {
-            for(var j = 0; j < height; j++) {
+        let r = 0, g = 0, b = 0,
+        [wmin, wmax] = width,
+        [hmin, hmax] = height;
+        let sun = (wmax - wmin) * (hmax - hmin);
+        for(var i = wmin; i < wmax; i++) {
+            for(var j = hmin; j < hmax; j++) {
                 r += imgarr[i][j][0];
                 g += imgarr[i][j][1];
                 b += imgarr[i][j][2];
