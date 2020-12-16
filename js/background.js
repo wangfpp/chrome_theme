@@ -4,11 +4,43 @@ window.onload = e => {
     history_container = document.querySelector("#history_container"),
     chp_node = document.querySelector("#chp"),
     menu_node = document.querySelector('#menu'),
-    engine_radio = menu_node.querySelectorAll(".menu-item input[name=engine]")
+    engine_radio = menu_node.querySelectorAll(".menu-item input[name=engine]"),
+    root_node = document.querySelector("#root");
     set_btn = document.querySelector('#set_btn');
 
     createChp(chp_node); // 获取彩虹屁
     
+    setRootBG("http://pic.netbian.com/uploads/allimg/201207/233833-1607355513c763.jpg")
+    /**
+     * 设置背景图
+     */
+    function setRootBG(url) {
+        if (root_node) {
+            root_node.setAttribute("style", `background: url(${url});background-size: cover`);
+            let image = new Image();
+            image.onload = function(e) {
+                let { target } = e;
+                let { width, height } = target;
+                let canvas = document.createElement("canvas");
+                canvas.width = width;
+                canvas.height = height;
+                let ctx = canvas.getContext("2d");
+                ctx.drawImage(image, 0, 0, width, height);
+                let image_data = ctx.getImageData(0, 0, width, height).data;
+                let pixel = new Array();
+                for(var i = 0; i < width; i++) {
+                    pixel[i] = [];
+                    for(var j = 0; j < height; j++) {
+                        pixel[i].push([image_data[(i*8 + j * 4)], image_data[(i*8 + j * 4) + 1], image_data[(i*8 + j * 4)+2], image_data[(i*8 + j * 4)+3]])
+                    }
+                }
+                let color = areaPixAverage(pixel, 166, 53);
+                root_node.style.setProperty("--date_color", color)
+            }
+            image.src = url
+        }
+    }
+
     if (input_node) {
         input_node.focus();
     }
@@ -36,6 +68,20 @@ window.onload = e => {
         }
     }
 
+
+    function areaPixAverage(imgarr, width, height) {
+        let r = 0, g = 0, b = 0;
+        let sun = width * height;
+        for(var i = 0; i < width;i++) {
+            for(var j = 0; j < height; j++) {
+                r += imgarr[i][j][0];
+                g += imgarr[i][j][1];
+                b += imgarr[i][j][2];
+            }
+        }
+        let color = `rgb(${255 - parseInt(r/sun)}, ${255 - parseInt(g/sun)}, ${255 - parseInt(b/sun)})`;
+        return color;
+    }
     /**
      * @description 点击页面时隐藏菜单
      * @param {*} 
