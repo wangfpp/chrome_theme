@@ -83,11 +83,10 @@ body,html{
     flex-wrap: wrap;
 }
 #history_container .history_item {
-    width: 100px;
+    width: 120px;
     height: 100px;
     border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.1);
-    margin: 10px;
+    background-color: transparent;
     cursor: pointer;
     padding: 5px;
     box-sizing: border-box;
@@ -106,6 +105,7 @@ body,html{
 }
 #history_container .history_item a img {
     border-radius: 50%;
+    background-color: rgba(255, 255, 255, 1);
 }
 #history_container .history_item .title {
     text-overflow: ellipsis;
