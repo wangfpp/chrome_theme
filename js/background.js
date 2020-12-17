@@ -19,25 +19,13 @@ window.onload = e => {
             root_node.setAttribute("style", `background: url(${url});background-size: cover`);
             let image = new Image();
             image.onload = function(e) {
-                let { target } = e;
-                let { width, height } = target;
-                let canvas = document.createElement("canvas");
-                canvas.width = width;
-                canvas.height = height;
-                let ctx = canvas.getContext("2d");
-                ctx.drawImage(image, 0, 0, width, height);
-                let image_data = ctx.getImageData(0, 0, width, height).data;
-                let pixel = new Array();
-                for(var i = 0; i < width; i++) {
-                    pixel[i] = [];
-                    for(var j = 0; j < height; j++) {
-                        pixel[i].push([image_data[(i*8 + j * 4)], image_data[(i*8 + j * 4) + 1], image_data[(i*8 + j * 4)+2], image_data[(i*8 + j * 4)+3]])
-                    }
-                }
-                let _date_color = areaPixAverage(pixel, [0, 166], [0, 53]);
-                let weather_color = areaPixAverage(pixel, [width-188, width], [0, 60]);
-                let chp_pos_y = parseInt(height * 0.39);
-                let chp_color = areaPixAverage(pixel, [parseInt(width/2), width], [chp_pos_y, chp_pos_y + 30]);
+                let { target } = e,
+                { width, height } = target,
+                pixel = getImagePix(image),
+                _date_color = areaPixAverage(pixel, [0, 166], [0, 53]),
+                weather_color = areaPixAverage(pixel, [width-188, width], [0, 60]),
+                chp_pos_y = parseInt(height * 0.39),
+                chp_color = areaPixAverage(pixel, [parseInt(width/2), width], [chp_pos_y, chp_pos_y + 30]);
                 root_node.style.setProperty("--date_color", _date_color);
                 root_node.style.setProperty("--weather-color", weather_color);
                 root_node.style.setProperty("--chp_color", chp_color);
@@ -49,9 +37,7 @@ window.onload = e => {
     if (input_node) {
         input_node.focus();
     }
-    input_node.onfocus = function(e) {
-        console.log(e);
-    }
+    
     if (date_node) {
         date_node.innerHTML = formatDateString();
         setInterval(() => {
@@ -71,6 +57,30 @@ window.onload = e => {
             window.location.href = engin_url;
             target.value = ""
         }
+    }
+
+
+    /**
+    * @description 获取图片的像素矩阵
+    * @param {Element Image} 图片target
+    */
+    function getImagePix(image) {
+        let canvas = document.createElement("canvas");
+        let { naturalWidth: width, naturalHeight: height } = image;
+        canvas.width = width;
+        canvas.height = height;
+        let ctx = canvas.getContext("2d");
+        ctx.drawImage(image, 0, 0, width, height);
+        let image_data = ctx.getImageData(0, 0, width, height).data;
+        let pixel = new Array();
+        for(var i = 0; i < width; i++) {
+            pixel[i] = [];
+            for(var j = 0; j < height; j++) {
+                let pix_index = (i*8 + j*4);
+                pixel[i].push([image_data[pix_index], image_data[pix_index + 1], image_data[pix_index+2], image_data[pix_index+3]])
+            }
+        }
+        return pixel;
     }
 
     /**
