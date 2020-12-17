@@ -144,14 +144,24 @@ html {
     top: 0;
     background-color: var(--menu-bg);
     z-index: 1;
+    user-select: none;
 }
-
+#menu .menu-item{
+  margin: 20px 0;
+}
 #menu .menu-item label {
     display: block;
+    margin: 10px 0;
 }
 #menu .menu-item .menu-item-content{
   width: 100%;
   text-align: center;
+}
+#menu .menu-item .menu-item-content.engine{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
 #menu .menu-item .menu-item-content .select_file_type{
   width: 100%;
@@ -173,6 +183,20 @@ html {
 #menu .menu-item .menu-item-content .select_file_type>div.active{
   background-color: #2dabff;;
 }
+#menu .menu-item .menu-item-content.select_bg input{
+  margin: 10px 0;
+}
+#menu .menu-item .menu-item-content.select_bg input[type="text"] {
+  height: 30px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+}
+#menu .menu-item .menu-item-content.select_bg input[type="text"]:focus{
+  border: 1px solid #2dabff;
+  outline: none;
+}
+
+
 #menu.showmenu {
     animation: showMenu 1s;
     right: 0;
