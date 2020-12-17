@@ -6,7 +6,9 @@ window.onload = e => {
     engine_radio = menu_node.querySelectorAll(".menu-item input[name=engine]"),
     root_node = document.querySelector("#root"),
     local_img_input = document.querySelector('#local_img_file'),
+    select_img = document.querySelectorAll('.select_file_type>div'),
     set_btn = document.querySelector('#set_btn');
+
 
     const storage = window.localStorage;
     let screenBg = storage.getItem("screen_bg");
@@ -49,25 +51,40 @@ window.onload = e => {
         }, 1000);
     }
 
-    local_img_input.onchange = e => {
+    /**
+     * @description 上传本地图像作为背景图
+     * @param {Event} e event事件
+     */
+    local_img_input.oninput = e => {
         let { target } = e,
-        { files } = target,
-        file = files[0],
-        { size } = file,
-        sizeM = sizeParse(size);
-        if (sizeM >= 5) {
-            alert("不能大于5M");
-            return
+        { type, files, value } = target;
+        if (type === "text") {
+            let pattern = /^(https?):\/\/[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]/;
+            if (!pattern.test(value)) {
+                // target.setCustomValidity(true)
+                target.setAttribute("style", "border: 1px solid #f00");
+                return
+            }
+            storage.setItem("screen_bg", value);
+            setRootBG(value);
+            
+        } else if(type === "file") {
+            let file = files[0],
+            { size } = file,
+            sizeM = sizeParse(size);
+            if (sizeM >= 5) {
+                alert("不能大于5M");
+                return
+            }
+            let fileRead = new FileReader();
+            fileRead.onload = result => {
+                let base64 = result.target.result;
+                storage.setItem("screen_bg", base64);
+                setRootBG(base64);
+            }
+            fileRead.readAsDataURL(file);
+            e.target.value = "";
         }
-        let fileRead = new FileReader();
-        fileRead.onload = result => {
-            let base64 = result.target.result;
-            storage.setItem("screen_bg", base64);
-            setRootBG(base64);
-        }
-        fileRead.readAsDataURL(file);
-        // e.target.files = [];
-        e.target.value = "";
     }
 
     input_node.onkeydown = function (e) {
@@ -81,7 +98,23 @@ window.onload = e => {
             target.value = ""
         }
     }
-
+    select_img.forEach(div => {
+        div.onclick = e => {
+            let { target } = e;
+            let class_list = getClass(target);
+            if (class_list.includes("local")) {
+                local_img_input.setAttribute("type", "file");
+            } else if (class_list.includes("network")) {
+                local_img_input.setAttribute("type", "text");
+                local_img_input.setAttribute("placeholder", "请输入一个网络图片地址");
+            }
+            select_img.forEach(item => {
+                removeClass(item, "active")
+            })
+            addClass(target, "active");
+            
+        }
+    })
     /**
      * @description 计算图片大小
      * @param {Number} num bit
