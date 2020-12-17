@@ -1,16 +1,18 @@
 window.onload = e => {
     let date_node = document.querySelector('.date'),
     input_node = document.querySelector('#search'),
-    history_container = document.querySelector("#history_container"),
     chp_node = document.querySelector("#chp"),
     menu_node = document.querySelector('#menu'),
     engine_radio = menu_node.querySelectorAll(".menu-item input[name=engine]"),
-    root_node = document.querySelector("#root");
+    root_node = document.querySelector("#root"),
+    local_img_input = document.querySelector('#local_img_file'),
     set_btn = document.querySelector('#set_btn');
 
+    const storage = window.localStorage;
+    let screenBg = storage.getItem("screen_bg");
     createChp(chp_node); // 获取彩虹屁
     // http://pic.netbian.com/uploads/allimg/201207/233833-1607355513c763.jpg 黑色
-    setRootBG("http://img.netbian.com/file/2017/0920/83047f81e72e8cac696d43fc41c9e7d4.jpg")
+    setRootBG(screenBg);
     /**
      * 设置背景图
      */
@@ -37,7 +39,7 @@ window.onload = e => {
     if (input_node) {
         input_node.focus();
     }
-    
+
     if (date_node) {
         date_node.innerHTML = formatDateString();
         setInterval(() => {
@@ -45,6 +47,21 @@ window.onload = e => {
                 date_node.innerHTML = formatDateString();
             }
         }, 1000);
+    }
+
+    local_img_input.onchange = e => {
+        console.log(e);
+        let { target } = e,
+        { files } = target,
+        file = files[0];
+        let fileRead = new FileReader();
+        fileRead.onload = result => {
+            let base64 = result.target.result;
+            storage.setItem("screen_bg", base64);
+            setRootBG(base64);
+        }
+        fileRead.readAsDataURL(file);
+        
     }
 
     input_node.onkeydown = function (e) {
@@ -176,28 +193,6 @@ window.onload = e => {
         `
     }
 }
-
-
-
-
-chrome.browserAction.onClicked.addListener(() => chrome.tabs.create({}))
-chrome.history.search({text: '', maxResults: 10}, function(data) {
-    let history_item = "";
-    data.forEach(function(page) {
-        let { id, title, url, visitCount, typedCount } = page;
-        history_item += `
-            <div class="history_item">
-                <a href="${url}">
-                    <img src="chrome://favicon/size/20@2x/${url}" alt="icon"/>
-                    <p class="title">${title}</p>
-                </a>
-            </div>
-        `
-    });
-    if (history_item.length && history_container) {
-        history_container.innerHTML = history_item;
-    }
-});
 
 
 /***

@@ -135,17 +135,21 @@ html {
 }
 
 #menu {
-    width: 170px;
+    width: 190px;
     height: 100%;
     position: absolute;
-    right: -170px;
+    right: -190px;
     top: 0;
     background-color: var(--menu-bg);
     z-index: 1;
 }
 
-#menu .meni-item label {
+#menu .menu-item label {
     display: block;
+}
+#menu .menu-item .menu-item-content{
+  width: 100%;
+  text-align: center;
 }
 #menu.showmenu {
     animation: showMenu 1s;
@@ -316,7 +320,7 @@ footer {
 
 @keyframes showMenu {
     0% {
-        right: -170px;
+        right: -190px;
     }
     100% {
         right: 0
@@ -328,6 +332,6 @@ footer {
         right: 0;
     }
     100% {
-        right: -170px
+        right: -190px
     }
 }

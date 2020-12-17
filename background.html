@@ -29,14 +29,17 @@
          <div id="menu">
             <div class="menu-item">
                 <label for="engine">搜索引擎:</label>
-                <input type="radio" name="engine" data="baidu" checked="checked">百度
-                <input type="radio" name="engine" data="biying">必应
-                <input type="radio" name="engine" data="google">谷歌
+                <div class="menu-item-content">
+                    <input type="radio" name="engine" data="baidu" checked="checked">百度
+                    <input type="radio" name="engine" data="biying">必应
+                    <input type="radio" name="engine" data="google">谷歌
+                </div>
             </div>
             <div class="menu-item">
                 <label for="backg">背景图:</label>
                 <div class="select_bg">
                     <span>本地选择</span><span>网络图片</span>
+                    <input type="file" id="local_img_file" accept="image/*">
                 </div>
             </div>
          </div>
@@ -44,6 +47,7 @@
         <footer>Wangfpp & fishfang</footer>
     </div>
 </body>
+<script src="./js/chrome_runtime.js"></script>
 <script src="./js/comm_js.js"></script>
 <script src="./js/search_engine.js"></script>
 <script src="./js/localstorage.js"></script>
