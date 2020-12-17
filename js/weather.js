@@ -36,10 +36,15 @@ function getWeather(url) {
             win_speed,
             win_meter,
             visibility,
-            wea
+            wea,
+            errcode,
+            errmsg
         } = res;
+        if (errmsg) {
+            weather_node.innerHTML = errmsg;
+            return
+        }
         if (weather_node) {
-            let html_str = "";
             let weaIcon = wea2icon(wea);
             weatherCity=city;
             weather_node.innerHTML = `
