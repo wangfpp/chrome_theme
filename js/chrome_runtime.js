@@ -4,6 +4,11 @@ chrome.history.search({text: '', maxResults: 10}, function(data) {
     let history_item = "";
     data.forEach(function(page) {
         let { id, title, url, visitCount, typedCount } = page;
+        let pattern = /<[^>]+>/g;
+        if (pattern.test(title)) {
+            title = title.replace('<', "");
+            title = title.replace('>', "");
+        }
         history_item += `
             <div class="history_item">
                 <a href="${url}">
