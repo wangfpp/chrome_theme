@@ -21,13 +21,13 @@ window.onload = e => {
             root_node.setAttribute("style", `background: url(${url});background-size: cover`);
             let image = new Image();
             image.onload = function(e) {
+                let { offsetTop, offsetLeft, offsetWidth, offsetHeight } = chp_node;
                 let { target } = e,
                 { width, height } = target,
                 pixel = getImagePix(image),
                 _date_color = areaPixAverage(pixel, [0, 166], [0, 53]),
                 weather_color = areaPixAverage(pixel, [width-188, width], [0, 60]),
-                chp_pos_y = parseInt(height * 0.39),
-                chp_color = areaPixAverage(pixel, [parseInt(width/2), width], [chp_pos_y, chp_pos_y + 30]);
+                chp_color = areaPixAverage(pixel, [offsetLeft, offsetLeft + offsetWidth], [offsetTop, offsetTop + offsetHeight]);
                 root_node.style.setProperty("--date_color", _date_color);
                 root_node.style.setProperty("--weather-color", weather_color);
                 root_node.style.setProperty("--chp_color", chp_color);
@@ -50,10 +50,15 @@ window.onload = e => {
     }
 
     local_img_input.onchange = e => {
-        console.log(e);
         let { target } = e,
         { files } = target,
-        file = files[0];
+        file = files[0],
+        { size } = file,
+        sizeM = sizeParse(size);
+        if (sizeM >= 5) {
+            alert("不能大于5M");
+            return
+        }
         let fileRead = new FileReader();
         fileRead.onload = result => {
             let base64 = result.target.result;
@@ -61,7 +66,8 @@ window.onload = e => {
             setRootBG(base64);
         }
         fileRead.readAsDataURL(file);
-        
+        // e.target.files = [];
+        e.target.value = "";
     }
 
     input_node.onkeydown = function (e) {
@@ -76,6 +82,13 @@ window.onload = e => {
         }
     }
 
+    /**
+     * @description 计算图片大小
+     * @param {Number} num bit
+     */
+    function sizeParse(num) {
+        return num/1024/1024;
+    }
 
     /**
     * @description 获取图片的像素矩阵

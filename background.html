@@ -15,7 +15,7 @@
         </div>
         <div class="weather"></div>
         <!----------------------- 搜索框 ------------------>
-        <input type="text" id="search" autofocus="autofocus">
+        <input type="text" id="search">
         <!----------------------- 彩虹屁  ----------------->
         <h2 id="chp"></h2>
         <!------------------------ 历史记录 ---------------->
@@ -37,8 +37,10 @@
             </div>
             <div class="menu-item">
                 <label for="backg">背景图:</label>
-                <div class="select_bg">
-                    <span>本地选择</span><span>网络图片</span>
+                <div class="select_bg menu-item-content">
+                    <div class="select_file_type">
+                        <div>本地选择</div><div>网络图片</div>
+                    </div>
                     <input type="file" id="local_img_file" accept="image/*">
                 </div>
             </div>
