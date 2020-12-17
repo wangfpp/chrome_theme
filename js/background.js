@@ -26,10 +26,11 @@ window.onload = e => {
                 let { offsetTop, offsetLeft, offsetWidth, offsetHeight } = chp_node;
                 let { target } = e,
                 { width, height } = target,
-                pixel = getImagePix(image),
+                pixel = getImagePix(image);
                 _date_color = areaPixAverage(pixel, [0, 166], [0, 53]),
                 weather_color = areaPixAverage(pixel, [width-188, width], [0, 60]),
                 chp_color = areaPixAverage(pixel, [offsetLeft, offsetLeft + offsetWidth], [offsetTop, offsetTop + offsetHeight]);
+                setSearchBg(input_node, pixel);
                 root_node.style.setProperty("--date_color", _date_color);
                 root_node.style.setProperty("--weather-color", weather_color);
                 root_node.style.setProperty("--chp_color", chp_color);
@@ -51,6 +52,22 @@ window.onload = e => {
         }, 1000);
     }
 
+    function setSearchBg(search_node, pixel) {
+        let { offsetTop, offsetLeft, offsetWidth, offsetHeight } = search_node;
+        let averpix = areaPixAverage(pixel, [offsetLeft, offsetLeft + offsetWidth], [offsetTop, offsetTop + offsetHeight],true);
+        let aver_count = eval(averpix.join("+"));
+        if (aver_count <= 382) {
+            root_node.style.setProperty("--search-bg", "rgba(0,0,0,0.1)");
+            root_node.style.setProperty("--search-bg-focus", "rgba(0,0,0,0.2)");
+            root_node.style.setProperty("--search-color", "#fff");
+            
+        } else {
+            root_node.style.setProperty("--search-bg", "rgba(255,255,255,0.6)");
+            root_node.style.setProperty("--search-bg-focus", "rgba(255,255,255,0.8)");
+            root_node.style.setProperty("--search-color", "#000");
+        }
+        
+    }
     /**
      * @description 上传本地图像作为背景图
      * @param {Event} e event事件
@@ -151,21 +168,38 @@ window.onload = e => {
      * @param {Array} imgarr 图片的数据矩阵
      * @param {Array} width 宽度的坐标范围
      * @param {Array} height 高度的坐标范围
+     * @param { Boolean } value 是否返回像素值
      */
-    function areaPixAverage(imgarr, width, height) {
+    function areaPixAverage(imgarr, width, height, value) {
+        value = value || false;
         let r = 0, g = 0, b = 0,
         [wmin, wmax] = width,
         [hmin, hmax] = height;
+        if (wmin > imgarr.length) {
+            wmin = imgarr.length
+        }
+        if (wmax > imgarr.length) {
+            wmax = imgarr.length
+        }
         let sun = (wmax - wmin) * (hmax - hmin);
         for(var i = wmin; i < wmax; i++) {
+            if (hmin > imgarr[i].length) {
+                hmin = imgarr[i].length
+            }
+            if (hmax > imgarr[i].length) {
+                hmax = imgarr[i].length
+            }
             for(var j = hmin; j < hmax; j++) {
                 r += imgarr[i][j][0];
                 g += imgarr[i][j][1];
                 b += imgarr[i][j][2];
             }
         }
-        let color = `rgb(${255 - parseInt(r/sun)}, ${255 - parseInt(g/sun)}, ${255 - parseInt(b/sun)})`;
-        return color;
+        r = 255 - parseInt(r/sun);
+        g = 255 - parseInt(g/sun);
+        b = 255 - parseInt(b/sun);
+        let color = `rgb(${r}, ${r}, ${b})`;
+        return value ? [r, g, b] : color;
     }
     /**
      * @description 点击页面时隐藏菜单

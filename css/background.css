@@ -16,7 +16,10 @@ html {
   --set_btn_bg: rgba(255, 255, 255, 1);
   --chp_bg: transparent;
   --chp_color: #fff;
-  --menu-bg: rgba(255, 255, 255, .9)
+  --menu-bg: rgba(255, 255, 255, .9);
+  --search-bg: rgba(255, 255, 255, 0.6);
+  --search-color: #fff;
+  --search-bg-focus: rgba(255, 255, 266, 0.8)
 }
 
 #root{
@@ -46,8 +49,9 @@ html {
     color: var(--weather-color);
 }
 #search {
+  color: var(--search-color);
   border-radius: 20px;
-  border: 1px solid #eee;
+  border: 1px solid transparent;
   outline: none;
   width: 40%;
   height: 40px;
@@ -56,14 +60,14 @@ html {
   left: 50%;
   transform: translateX(-50%);
   padding: 0 15px;
-  opacity: 0.6;
+  background-color: var(--search-bg);
   font-size: 16px;
   -webkit-user-select: text;
 }
 #search:focus {
-  border: 1px solid darkcyan;
+  border: 1px solid transparent;
+  background-color: var(--search-bg-focus);
   outline: none;
-  opacity: 0.9;
 }
 #chp {
   width: auto;
@@ -170,6 +174,15 @@ html {
   flex-direction: row;
   justify-content: space-around;
   margin: 5px 0;
+}
+#menu .menu-item.aboutme {
+  width: 100%;
+  position: absolute;
+  bottom: 60px;
+}
+#menu .menu-item.aboutme .menu-item-content{
+  display: flex;
+  justify-content: center;
 }
 #menu .menu-item .menu-item-content .select_file_type>div{
   display: flex;
