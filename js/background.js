@@ -25,9 +25,9 @@ window.onload = e => {
             image.onload = function(e) {
                 let { offsetTop, offsetLeft, offsetWidth, offsetHeight } = chp_node;
                 let { target } = e,
-                { width, height } = target,
-                if (!(width >= 2000 || height >= 2000)) {
-                    pixel = getImagePix(image);
+                { width, height } = target;
+                if(!(width >= 2000 || height >= 2000)) {
+                    let pixel = getImagePix(image),
                     _date_color = areaPixAverage(pixel, [0, 166], [0, 53]),
                     weather_color = areaPixAverage(pixel, [width-188, width], [0, 60]),
                     chp_color = areaPixAverage(pixel, [offsetLeft, offsetLeft + offsetWidth], [offsetTop, offsetTop + offsetHeight]);
