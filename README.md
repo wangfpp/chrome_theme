@@ -25,7 +25,7 @@
 ### 贡献者
 [fishfang](https://github.com/sawafish)
 ### 效果图
-![效果](./img/md/example.png)
+![效果](https://compresspng.com/files/i6dbzashy0hucrcu/o_1epprtalg1jql19t8ri11pua1qata/optimized-763m.png?lgtq)
 
 ### 参考文档
 [中文文档](https://wizardforcel.gitbooks.io/chrome-doc/content/1.html)
