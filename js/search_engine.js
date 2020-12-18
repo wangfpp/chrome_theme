@@ -19,4 +19,4 @@ const search_gine_dict = {
     }
 }
 
-const search_gine_list = ["baidu", "biying", "google"];
+const search_gine_list = Object.keys(search_gine_dict)

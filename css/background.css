@@ -18,7 +18,7 @@ html {
   --chp_color: #fff;
   --menu-bg: rgba(255, 255, 255, .9);
   --search-bg: rgba(255, 255, 255, 0.6);
-  --search-color: #fff;
+  --search-color: #000;
   --search-bg-focus: rgba(255, 255, 266, 0.8)
 }
 

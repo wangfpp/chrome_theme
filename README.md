@@ -22,6 +22,15 @@
 
 - 设置搜索引擎
 
+
+### 开源/免费API
+
+获取geo定位
+http://geolocation-db.com
+
+获取天气预警
+http://data.cma.cn/kbweb/home/live
+
 ### 贡献者
 [fishfang](https://github.com/sawafish)
 ### 效果图
