@@ -209,7 +209,12 @@ html {
   outline: none;
 }
 
-
+/* 字体颜色是否跟随图片 */
+#menu .menu-item.color_with_img .menu-item-content{
+  display: flex;
+  padding-left: 15px;
+  box-sizing: border-box;
+}
 #menu.showmenu {
     animation: showMenu 1s;
     right: 0;
@@ -393,4 +398,54 @@ footer {
     100% {
         right: -190px
     }
+}
+
+
+
+/* 全局生效的css */
+
+input[type="checkbox"].switch {
+  outline: none;
+  width: 40px;
+  height: 20px;
+  position: relative;
+  background-color: #ccc;
+  border-radius: 10px;
+  appearance: none;
+  transition: border-color .5s, background-color .5s;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+input[type="checkbox"].switch::before{
+  content: "关";
+  position: absolute;
+  left: -15px;
+  color: #000;
+}
+
+input[type="checkbox"].switch::after{
+  content: "";
+  display: inline-block;
+  width: 1.1rem;
+  height: 1.1rem;
+  position: absolute;
+  left: 0;
+  border-radius: 50%;
+  background-color: #fff;
+  box-shadow: 0 0 2px#999999;
+}
+
+input[type="checkbox"].switch:checked{
+  background-color: #2dabff;
+}
+
+input[type="checkbox"].switch:checked::after{
+  position: absolute;
+  left:55%;
+}
+
+input[type="checkbox"].switch:checked::before{
+  content: "开";
 }

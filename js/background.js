@@ -7,11 +7,18 @@ window.onload = e => {
     root_node = document.querySelector("#root"),
     local_img_input = document.querySelector('#local_img_file'),
     select_img = document.querySelectorAll('.select_file_type>div'),
+    textcolor_with_img_node = document.querySelector("#textcolor_with_img"),
     set_btn = document.querySelector('#set_btn');
 
 
     const storage = window.localStorage;
     let screenBg = storage.getItem("screen_bg");
+    let textcolor_with_img_ = storage.getItem("color_width_img");
+    if (textcolor_with_img_ == "1") {
+        textcolor_with_img_node.setAttribute("checked", true)
+    } else {
+        textcolor_with_img_node.setAttribute("checked", false)
+    }
     createChp(chp_node); // 获取彩虹屁
     // http://pic.netbian.com/uploads/allimg/201207/233833-1607355513c763.jpg 黑色
     setRootBG(screenBg);
@@ -24,10 +31,12 @@ window.onload = e => {
             let image = new Image();
             image.onload = function(e) {
                 if (storage.getItem("color_width_img") == "1") {
+                    console.log("颜色跟随")
                     let { offsetTop, offsetLeft, offsetWidth, offsetHeight } = chp_node;
                     let { target } = e,
                     { width, height } = target;
                     if(!(width >= 2000 || height >= 2000)) {
+                        console.log("图片太大")
                         let pixel = getImagePix(image),
                         _date_color = areaPixAverage(pixel, [0, 166], [0, 53]),
                         weather_color = areaPixAverage(pixel, [width-188, width], [0, 60]),
@@ -59,7 +68,10 @@ window.onload = e => {
     function setSearchBg(search_node, pixel) {
         let { offsetTop, offsetLeft, offsetWidth, offsetHeight } = search_node;
         let averpix = areaPixAverage(pixel, [offsetLeft, offsetLeft + offsetWidth], [offsetTop, offsetTop + offsetHeight],true);
-        let aver_count = eval(averpix.join("+"));
+        let aver_count = 0;
+        averpix.forEach(num => {
+            aver_count += num
+        })
         if (aver_count <= 382) {
             root_node.style.setProperty("--search-bg", "rgba(0,0,0,0.1)");
             root_node.style.setProperty("--search-bg-focus", "rgba(0,0,0,0.2)");
@@ -108,6 +120,10 @@ window.onload = e => {
         }
     }
 
+    /**
+     * @description 搜索框
+     * @param {*} e 
+     */
     input_node.onkeydown = function (e) {
         let { keyCode, target } = e;
         let { value } = target;
@@ -119,6 +135,22 @@ window.onload = e => {
             target.value = ""
         }
     }
+
+    /**
+     * 颜色跟随搜索框按钮
+     */
+
+    textcolor_with_img_node.onchange = e => {
+        let { target } = e;
+        let { checked } = target;
+        console.log(checked)
+        if (checked) {
+            storage.setItem("color_width_img", "1");
+        } else {
+            storage.setItem("color_width_img", "0")
+        }
+    }
+    
     select_img.forEach(div => {
         div.onclick = e => {
             let { target } = e;
