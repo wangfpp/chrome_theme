@@ -149,6 +149,8 @@ html {
     background-color: var(--menu-bg);
     z-index: 1;
     user-select: none;
+    padding: 0 10px;
+    box-sizing: border-box;
 }
 #menu .menu-item{
   margin: 20px 0;
@@ -156,6 +158,7 @@ html {
 #menu .menu-item label {
     display: block;
     margin: 10px 0;
+    font-weight: bolder;
 }
 #menu .menu-item .menu-item-content{
   width: 100%;
@@ -210,7 +213,7 @@ html {
 }
 
 /* 字体颜色是否跟随图片 */
-#menu .menu-item.color_with_img .menu-item-content{
+#menu .menu-item.color_with_img .menu-item-content, #menu .menu-item.show_history .menu-item-content{
   display: flex;
   padding-left: 15px;
   box-sizing: border-box;

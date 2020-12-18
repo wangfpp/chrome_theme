@@ -8,20 +8,53 @@ window.onload = e => {
     local_img_input = document.querySelector('#local_img_file'),
     select_img = document.querySelectorAll('.select_file_type>div'),
     textcolor_with_img_node = document.querySelector("#textcolor_with_img"),
+    show_history_node = document.querySelector("#show_history_switch"),
     set_btn = document.querySelector('#set_btn');
 
 
     const storage = window.localStorage;
     let screenBg = storage.getItem("screen_bg");
     let textcolor_with_img_ = storage.getItem("color_width_img");
+    let show_history = storage.getItem("show_history");
+    
+
+    // setSwitchValue(textcolor_with_img_node, textcolor_with_img_);
+
+    // setSwitchValue(show_history_node, show_history);
+
+
     if (textcolor_with_img_ == "1") {
-        textcolor_with_img_node.setAttribute("checked", true)
+        setCheckBox(textcolor_with_img_node, true);
     } else {
-        textcolor_with_img_node.setAttribute("checked", false)
+        setCheckBox(textcolor_with_img_node, false);
     }
+
     createChp(chp_node); // 获取彩虹屁
     // http://pic.netbian.com/uploads/allimg/201207/233833-1607355513c763.jpg 黑色
     setRootBG(screenBg);
+
+
+    function setSwitchValue(node, localstorageValue) {
+        console.log(node, localstorageValue);
+        if (localstorageValue == "1") {
+            setCheckBox(node, true);
+        } else {
+            setCheckBox(node, false);
+        }
+        console.log(node)
+    }
+
+    /**
+     * 
+     * @param {Element} node 
+     */
+    function setCheckBox(node, value) {
+        console.log(node, value);
+        node.setAttribute("checked", value)
+    }
+
+
+
     /**
      * 设置背景图
      */
@@ -143,14 +176,22 @@ window.onload = e => {
     textcolor_with_img_node.onchange = e => {
         let { target } = e;
         let { checked } = target;
-        console.log(checked)
         if (checked) {
             storage.setItem("color_width_img", "1");
         } else {
             storage.setItem("color_width_img", "0")
         }
     }
-    
+
+    show_history_node.onchange = e => {
+        let { target } = e;
+        let { checked } = target;
+        if (checked) {
+            storage.setItem("show_history", "1");
+        } else {
+            storage.setItem("show_history", "0")
+        }
+    }
     select_img.forEach(div => {
         div.onclick = e => {
             let { target } = e;

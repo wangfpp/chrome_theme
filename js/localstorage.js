@@ -14,3 +14,7 @@ localStorage.getItem("screen_bg") ? null : localStorage.setItem("screen_bg", "ht
 
 // 默认不开启
 localStorage.getItem("color_width_img") ? null : localStorage.setItem("color_width_img", "0");
+
+// 是否显示历史记录
+
+localStorage.getItem("show_history") ? null : localStorage.setItem("show_history", "0");
