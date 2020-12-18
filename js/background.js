@@ -18,30 +18,24 @@ window.onload = e => {
     let show_history = storage.getItem("show_history");
     
 
-    // setSwitchValue(textcolor_with_img_node, textcolor_with_img_);
+    setSwitchValue(textcolor_with_img_node, textcolor_with_img_);
 
-    // setSwitchValue(show_history_node, show_history);
+    setSwitchValue(show_history_node, show_history);
 
-
-    if (textcolor_with_img_ == "1") {
-        setCheckBox(textcolor_with_img_node, true);
-    } else {
-        setCheckBox(textcolor_with_img_node, false);
-    }
 
     createChp(chp_node); // 获取彩虹屁
     // http://pic.netbian.com/uploads/allimg/201207/233833-1607355513c763.jpg 黑色
     setRootBG(screenBg);
 
-
+    if (show_history == "0") {
+        chp_node.setAttribute("style", "top: 50%")
+    } 
     function setSwitchValue(node, localstorageValue) {
-        console.log(node, localstorageValue);
         if (localstorageValue == "1") {
             setCheckBox(node, true);
         } else {
-            setCheckBox(node, false);
+            removeAttr(node, "checked");
         }
-        console.log(node)
     }
 
     /**
@@ -49,11 +43,15 @@ window.onload = e => {
      * @param {Element} node 
      */
     function setCheckBox(node, value) {
-        console.log(node, value);
         node.setAttribute("checked", value)
     }
 
-
+    /**
+     * 删除属性
+     */
+    function removeAttr(node, attr) {
+        node.removeAttribute(attr);
+    }
 
     /**
      * 设置背景图
@@ -64,7 +62,6 @@ window.onload = e => {
             let image = new Image();
             image.onload = function(e) {
                 if (storage.getItem("color_width_img") == "1") {
-                    console.log("颜色跟随")
                     let { offsetTop, offsetLeft, offsetWidth, offsetHeight } = chp_node;
                     let { target } = e,
                     { width, height } = target;
@@ -174,6 +171,7 @@ window.onload = e => {
      */
 
     textcolor_with_img_node.onchange = e => {
+        console.log(e)
         let { target } = e;
         let { checked } = target;
         if (checked) {
