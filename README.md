@@ -27,8 +27,8 @@ http://data.cma.cn/kbweb/home/live
 ### 贡献者
 [fishfang](https://github.com/sawafish)
 ### 效果图
-![风景效果](https://ftp.bmp.ovh/imgs/2020/12/fb358ad631e1af06.png)
-![蜘蛛侠](https://ftp.bmp.ovh/imgs/2020/12/0593457395617a2a.png)
+![风景效果](https://ftp.bmp.ovh/imgs/2020/12/fb358ad631e1af06.png?raw=true)
+![蜘蛛侠](https://ftp.bmp.ovh/imgs/2020/12/0593457395617a2a.png?raw=true)
 
 ### 参考文档
 [中文文档](https://wizardforcel.gitbooks.io/chrome-doc/content/1.html)
