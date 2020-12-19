@@ -334,16 +334,16 @@ window.onload = e => {
     function formatDateString(){
         let date = new Date();
         let [year, mon, day, week, hour, min, second ] = [date.getFullYear(), date.getMonth() + 1, date.getDate(), date.getDay(), date.getHours(), date.getMinutes(), date.getSeconds()];
-        let time = `${doubleNum(hour)}:${doubleNum(min)}:${doubleNum(second)}`
+        // let time = `:${doubleNum(min)}:${doubleNum(second)}`
         return `
-        <h4 class='year'>${year}</h4>
-        <h3 class='mon_day'>
-            <cite>${mon}</cite>
-            <cite>${day}</cite>
-            <p>${weekParse(week)}</p>
-        </h3>
-        <div class='flex_col flex_start'>
-            <h3 class="fw_500 fs_20">${time}</h3>
+        <div class="date_content">
+            <div class="time">
+                <div>${doubleNum(hour)}</div>:<div>${doubleNum(min)}</div>:<div>${doubleNum(second)}</div>
+            </div>
+            <div class="date_text">
+                <div class="ymd">${year}-${doubleNum(mon)}-${doubleNum(day)}</div>
+                <div class="week_txt">${weekParse(week)}</div>
+            </div>
         </div>
         `
     }

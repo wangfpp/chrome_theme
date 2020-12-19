@@ -8,6 +8,14 @@ html {
   width: 100%;
   height: 100%;
 }
+/* 数字LED字体 */
+@font-face {
+    font-family: 'technologyregular';
+    src: url('../asset/font/patopian_1986-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
 /* 主题色定义 css变量 */
 #root {
   --date_color: #fff;
@@ -32,7 +40,6 @@ html {
 #root .info {
   position: absolute;
   top: 10px;
-  left: 10px;
 }
 #root .weather {
   position: absolute;
@@ -201,9 +208,10 @@ html {
 }
 #menu .menu-item .menu-item-content.select_bg input{
   margin: 10px 0;
+  height: 30px;
+  border: 1px solid transparent;
 }
 #menu .menu-item .menu-item-content.select_bg input[type="text"] {
-  height: 30px;
   border: 1px solid #eee;
   border-radius: 5px;
 }
@@ -258,7 +266,6 @@ html {
 .date {
   height: 54px;
   display: flex;
-  align-items: flex-end;
   justify-content: flex-start;
   transition: all 0.35s;
 }
@@ -282,71 +289,34 @@ h3 {
 cite {
   font-style: normal;
 }
-.year {
-  writing-mode: vertical-rl;
-  font-size: 14px;
-  letter-spacing: 1.5px;
-  padding-bottom: 2px;
+.date .date_content {
+    font-family: "technologyregular";
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 125px;
 }
-.date h4 {
-  font-weight: 500;
+.date .date_content .time{
+    font-size: 30px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    letter-spacing: -2px;
 }
-.mon_day {
-  width: 60px;
-  height: 54px;
-  margin: 0 4px;
-  position: relative;
+.date .date_content .time>div {
+    flex: 1;
+    justify-content: center;
+    align-items: center;
 }
-.mon_day:after {
-  content: "";
-  width: 1px;
-  height: 40px;
-  background-color: #eee;
-  position: absolute;
-  top: 12px;
-  left: 16px;
-  transform: rotate(25deg);
+.date .date_content .date_text{
+    display: flex;
+    align-items: center;
+    letter-spacing: -1px;
 }
-.mon_day cite {
-  position: absolute;
-  font-weight: 500;
-  font-family: fantasy;
-  letter-spacing: 3px;
-}
-.mon_day cite:first-child {
-  top: 12px;
-  font-size: 14px;
-  left: 0;
-}
-.fs_fy {
-  font-family: fantasy;
-}
-.fw_500 {
-  font-weight: 500;
-}
-.mon_day cite:nth-child(2) {
-  font-size: 26px;
-  bottom: 0;
-  right: 0;
-}
-.mon_day p {
-  position: absolute;
-  font-size: 12px;
-  transform: scale(0.78);
-  top: 12px;
-  right: -1px;
-}
-.ml_10 {
-  margin-left: 10px;
-}
-.flex_end {
-  align-items: flex-end;
-}
-.flex_start {
-  align-items: flex-start;
-}
-.fs_20{
-    font-size: 20px;
+.date .date_content .date_text .week_txt{
+    font-size: 12px;
 }
 .weather img {
   width: 30px;
