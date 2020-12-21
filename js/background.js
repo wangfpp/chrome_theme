@@ -14,6 +14,7 @@ window.onload = e => {
 
     const storage = window.localStorage;
     let screenBg = storage.getItem("screen_bg");
+    let use_engine = storage.getItem("search_engine");
     let textcolor_with_img_ = storage.getItem("color_width_img");
     let show_history = storage.getItem("show_history");
     
@@ -296,6 +297,9 @@ window.onload = e => {
      * 菜单项增加选择搜索引擎
      */
     engine_radio.forEach(item => {
+        if (use_engine === item.getAttribute("data")) {
+            item.setAttribute("checked", "checked")
+        }
         item.onchange = e => {
             let { target } = e;
            let engine = target.getAttribute("data");
