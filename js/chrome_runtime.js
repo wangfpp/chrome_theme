@@ -23,4 +23,6 @@ if (window.localStorage.getItem("show_history") == "1") {
             history_container.innerHTML = history_item;
         }
     });
+} else {
+    history_container.setAttribute("style", "display:none");
 }
