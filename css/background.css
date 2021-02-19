@@ -121,6 +121,7 @@ html {
     cursor: pointer;
     padding: 5px;
     box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.2);
 }
 #history_container .history_item:hover {
     background-color: rgba(255, 255, 255, 0.4);
@@ -136,7 +137,6 @@ html {
 }
 #history_container .history_item a img {
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 1);
 }
 #history_container .history_item .title {
     text-overflow: ellipsis;
