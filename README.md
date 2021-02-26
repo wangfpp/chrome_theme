@@ -20,6 +20,7 @@
 
 获取geo定位
 http://geolocation-db.com
+http://ip-api.com 目前使用的此接口　速度快永久免费
 
 获取天气预警
 http://data.cma.cn/kbweb/home/live
