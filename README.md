@@ -32,6 +32,9 @@ http://data.cma.cn/kbweb/home/live
 
 <img src="https://ftp.bmp.ovh/imgs/2020/12/0593457395617a2a.png" alt="蜘蛛侠">
 
+### 后续计划
+后续打算基于中国气象局的数据做一个小程序,功能有当日天气,天气预报,空气质量等其他预警信息
+
 ### 参考文档
 [中文文档](https://wizardforcel.gitbooks.io/chrome-doc/content/1.html)
 
