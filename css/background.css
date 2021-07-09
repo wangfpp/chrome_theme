@@ -3,6 +3,10 @@
     margin: 0;
     text-decoration: none;
 }
+button {
+  outline: none;
+  border-color: transparent;
+}
 body,
 html {
   width: 100%;
@@ -159,7 +163,7 @@ html {
     padding: 0 10px;
     box-sizing: border-box;
     backdrop-filter: blur(5px);
-    
+    border-radius: 10px 0 0 10px;
 }
 #menu .menu-item{
   margin: 20px 0;
