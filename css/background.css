@@ -24,7 +24,7 @@ html {
   --set_btn_bg: rgba(255, 255, 255, 1);
   --chp_bg: transparent;
   --chp_color: #fff;
-  --menu-bg: rgba(255, 255, 255, .9);
+  --menu-bg: hsla(0, 0%, 100%, .75);
   --search-bg: rgba(255, 255, 255, 0.6);
   --search-color: #000;
   --search-bg-focus: rgba(255, 255, 266, 0.8)
@@ -158,6 +158,8 @@ html {
     user-select: none;
     padding: 0 10px;
     box-sizing: border-box;
+    backdrop-filter: blur(5px);
+    
 }
 #menu .menu-item{
   margin: 20px 0;
